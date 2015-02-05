@@ -15,4 +15,5 @@ This repository holds a Java application including a server using Apache Cayenne
 read more about yafra on:
  * http://www.yafra.org
  * https://github.com/yafraorg/yafra/wiki
- * raise a ticket if neede https://github.com/yafraorg/yafra/issues?state=open
+ * raise a ticket related to yafra.org framework: https://github.com/yafraorg/yafra/issues?state=open
+ * raise a ticket related to this java code: https://github.com/yafraorg/yafra-java/issues?state=open
