@@ -6,15 +6,26 @@
 #export ANDROID_HOME=/work/adt/sdk
 #export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-echo "Make sure you set AndroidManifest.xml android:debuggable to false!"
-cd ionic
-/home/shippable/workspace/src/github.com/yafraorg/yafra-mobile/node_modules/ionic/bin/ionic platform add android
-~/update-plugins.sh /home/shippable/workspace/src/github.com/yafraorg/yafra-mobile/node_modules/ionic/bin/ionic
-/home/shippable/workspace/src/github.com/yafraorg/yafra-mobile/node_modules/ionic/bin/ionic resources
-/home/shippable/workspace/src/github.com/yafraorg/yafra-mobile/node_modules/ionic/bin/ionic lib
-node_modules/gulp/bin/gulp.js
-/home/shippable/workspace/src/github.com/yafraorg/yafra-mobile/node_modules/ionic/bin/ionic build android
-cd platforms/android
-ant clean
-ant release
+echo "JAVA / Maven build starting"
+
+# maven build - build all and run some extras afterwards
+mvn install
+# yafra java core
+#cd org.yafra.server.core/target
+#cp *.jar $WORKNODE/apps
+# yafra java J2EE wicket and cxf
+#cd ../../org.yafra.server.jee/target
+#cp *.war $WORKNODE/apps
+#cp *.jar $WORKNODE/bin
+# yafra java EJB3
+#cd $BASENODE/org.yafra.server.ejb/target
+#cp *client.jar $WORKNODE/apps
+#cd $BASENODE/org.yafra.server.ejb-war/target
+#cp *.war $WORKNODE/apps
+
+#rcp
+cd org.yafra.rcpbuild
+./build-rcp.sh
+
+
 echo "done - save in /work"

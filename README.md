@@ -3,6 +3,8 @@
 ## Java
 This repository holds a Java application including a server using Apache Cayenne ORM, supports EJB and REST and has a fat client based on Eclipse RCP.
 
+[![Build Status](https://api.shippable.com/projects/54d36cf15ab6cc13528aecf0/badge?branchName=master)](https://app.shippable.com/projects/54d36cf15ab6cc13528aecf0/builds/latest)
+
 ## Development Environment
  * Based on Eclipse: https://github.com/yafraorg/yafra/wiki/Development-environment-Java-JEE
 
