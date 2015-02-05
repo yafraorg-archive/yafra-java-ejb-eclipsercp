@@ -8,6 +8,7 @@
 	<db-entity name="Person" schema="yafra">
 		<db-attribute name="address" type="VARCHAR" length="4000"/>
 		<db-attribute name="country" type="VARCHAR" length="1000"/>
+		<db-attribute name="email" type="VARCHAR" length="200"/>
 		<db-attribute name="firstname" type="VARCHAR" isMandatory="true" length="1000"/>
 		<db-attribute name="googleId" type="VARCHAR" length="4000"/>
 		<db-attribute name="id" type="INTEGER" isMandatory="true"/>
@@ -45,10 +46,22 @@
 		<db-attribute name="rights" type="VARCHAR" length="1000"/>
 	</db-entity>
 	<db-entity name="YafraUser" schema="yafra">
+		<db-attribute name="email" type="VARCHAR" length="200"/>
 		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="1000"/>
+		<db-attribute name="phone" type="VARCHAR" length="200"/>
 		<db-attribute name="picturelink" type="VARCHAR" length="4000"/>
 		<db-attribute name="pkYafraUser" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 		<db-attribute name="userid" type="VARCHAR" isMandatory="true" length="500"/>
+	</db-entity>
+	<db-entity name="YafraUserDevice" schema="yafra">
+		<db-attribute name="YUser" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="deviceAuthDate" type="DATE"/>
+		<db-attribute name="deviceAuthToken" type="VARCHAR" length="500"/>
+		<db-attribute name="deviceId" type="VARCHAR" isMandatory="true" length="300"/>
+		<db-attribute name="deviceOs" type="VARCHAR" length="100"/>
+		<db-attribute name="devicePushToken" type="VARCHAR" length="500"/>
+		<db-attribute name="deviceRegistrationDate" type="DATE"/>
+		<db-attribute name="pkYafraUserDevice" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
 	</db-entity>
 	<db-entity name="YafraUserRole" schema="yafra">
 		<db-attribute name="YRole" type="INTEGER" isMandatory="true"/>
@@ -87,9 +100,19 @@
 		<obj-attribute name="rights" type="java.lang.String" db-attribute-path="rights"/>
 	</obj-entity>
 	<obj-entity name="YafraUser" className="org.yafra.orm.YafraUser" dbEntityName="YafraUser">
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="email"/>
 		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="phone" type="java.lang.String" db-attribute-path="phone"/>
 		<obj-attribute name="picturelink" type="java.lang.String" db-attribute-path="picturelink"/>
 		<obj-attribute name="userid" type="java.lang.String" db-attribute-path="userid"/>
+	</obj-entity>
+	<obj-entity name="YafraUserDevice" className="org.yafra.orm.YafraUserDevice" dbEntityName="YafraUserDevice">
+		<obj-attribute name="deviceAuthDate" type="java.util.Date" db-attribute-path="deviceAuthDate"/>
+		<obj-attribute name="deviceAuthToken" type="java.lang.String" db-attribute-path="deviceAuthToken"/>
+		<obj-attribute name="deviceId" type="java.lang.String" db-attribute-path="deviceId"/>
+		<obj-attribute name="deviceOs" type="java.lang.String" db-attribute-path="deviceOs"/>
+		<obj-attribute name="devicePushToken" type="java.lang.String" db-attribute-path="devicePushToken"/>
+		<obj-attribute name="deviceRegistrationDate" type="java.util.Date" db-attribute-path="deviceRegistrationDate"/>
 	</obj-entity>
 	<db-relationship name="LogArray" source="Person" target="PersonLog" toMany="true">
 		<db-attribute-pair source="pkPerson" target="fkPersonId"/>
@@ -112,8 +135,14 @@
 	<db-relationship name="AuditArray" source="YafraUser" target="YafraAudit" toMany="true">
 		<db-attribute-pair source="pkYafraUser" target="fkUser"/>
 	</db-relationship>
+	<db-relationship name="DeviceArray" source="YafraUser" target="YafraUserDevice" toMany="true">
+		<db-attribute-pair source="pkYafraUser" target="YUser"/>
+	</db-relationship>
 	<db-relationship name="RoleArray" source="YafraUser" target="YafraUserRole" toMany="true">
 		<db-attribute-pair source="pkYafraUser" target="YUser"/>
+	</db-relationship>
+	<db-relationship name="TO_YafraUser" source="YafraUserDevice" target="YafraUser" toMany="false">
+		<db-attribute-pair source="YUser" target="pkYafraUser"/>
 	</db-relationship>
 	<db-relationship name="TO_Role" source="YafraUserRole" target="YafraBusinessRole" toMany="false">
 		<db-attribute-pair source="YRole" target="pkYafraBusinessRole"/>
@@ -129,6 +158,8 @@
 	<obj-relationship name="toYafraBusinessRole" source="YafraRole" target="YafraBusinessRole" deleteRule="Nullify" db-relationship-path="TO_YafraBusinessRole"/>
 	<obj-relationship name="YRoles" source="YafraUser" target="YafraBusinessRole" deleteRule="Deny" db-relationship-path="RoleArray.TO_Role"/>
 	<obj-relationship name="auditArray" source="YafraUser" target="YafraAudit" deleteRule="Cascade" db-relationship-path="AuditArray"/>
+	<obj-relationship name="deviceArray" source="YafraUser" target="YafraUserDevice" deleteRule="Cascade" db-relationship-path="DeviceArray"/>
+	<obj-relationship name="toYafraUser" source="YafraUserDevice" target="YafraUser" deleteRule="Nullify" db-relationship-path="TO_YafraUser"/>
 	<query name="DeleteAll" factory="org.apache.cayenne.map.SQLTemplateBuilder" root="data-map" root-name="org.yafra.yafraMap">
 		<property name="cayenne.GenericSelectQuery.fetchingDataRows" value="true"/>
 		<sql><![CDATA[delete from $table]]></sql>
