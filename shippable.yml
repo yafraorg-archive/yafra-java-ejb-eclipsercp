@@ -8,8 +8,6 @@ jdk:
 before_script: 
   - pwd
   - ls
-  - ls node_modules
-  - ls node_modules/ionic/bin
 
 script:
   - ./build-shippable.sh
