@@ -1,9 +1,9 @@
 language: java
 
 jdk:
-   - oraclejdk7
-   - openjdk6
-   - openjdk7
+  - oraclejdk7
+  - oraclejdk8
+  - openjdk7
 
 before_script: 
   - pwd
@@ -13,7 +13,11 @@ script:
   - ./build-shippable.sh
 
 after_success:
-   - mvn clean cobertura:cobertura
-   - mvn test
+   - echo $BUILD_NUMBER
+   - tar cvf /work/yafra-java-build.tar /work/yafra-runtime
+   - gzip /work/yafra-java-build.tar
+   - curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+#   - mvn clean cobertura:cobertura
+#   - mvn test
 notifications:
   email: false
