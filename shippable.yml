@@ -7,11 +7,12 @@ jdk:
 
 before_script: 
   - sudo mkdir -p /work/yafra-runtime
+  - sudo git clone https://github.com/yafraorg/yafra.git
   - pwd
   - ls
 
 script:
-  - ./build-shippable.sh
+  - sudo ./build-shippable.sh
 
 after_success:
    - echo $BUILD_NUMBER
