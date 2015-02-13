@@ -6,7 +6,7 @@ jdk:
 #  - openjdk7
 
 before_script: 
-  - mkdir -p /work/yafra-runtime
+  - sudo mkdir -p /work/yafra-runtime
   - pwd
   - ls
 
@@ -15,9 +15,9 @@ script:
 
 after_success:
    - echo $BUILD_NUMBER
-   - tar cvf /work/yafra-java-build.tar /work/yafra-runtime
-   - gzip /work/yafra-java-build.tar
-   - curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+   - sudo tar cvf /work/yafra-java-build.tar /work/yafra-runtime
+   - sudo gzip /work/yafra-java-build.tar
+   - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
 #   - mvn clean cobertura:cobertura
 #   - mvn test
 notifications:
