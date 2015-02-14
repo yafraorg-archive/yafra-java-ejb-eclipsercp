@@ -21,5 +21,6 @@ after_success:
    - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
 #   - mvn clean cobertura:cobertura
 #   - mvn test
+commit_container: yafraorg/java-shippable
 notifications:
   email: false
