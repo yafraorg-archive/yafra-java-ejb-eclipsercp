@@ -9,6 +9,8 @@ export WORKNODE=/work/yafra-runtime
 
 echo "JAVA / Maven build starting"
 echo "environment is WORKNODE = $WORKNODE - BASENODE = $BASENODE"
+test -d $WORKNODE/apps || mkdir -p $WORKNODE/apps
+test -d $WORKNODE/bin || mkdir -p $WORKNODE/bin
 
 # maven build - build all and run some extras afterwards
 mvn install

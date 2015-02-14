@@ -20,7 +20,7 @@
 # Purpose:      build rcp client
 #------------------------------------------------------------------------
 
-test -d $WORKNODE/apps/yafrarcp || mkdir $WORKNODE/apps/yafrarcp
+test -d $WORKNODE/apps/yafrarcp || mkdir -p $WORKNODE/apps/yafrarcp
 
 # copy run time libraries used by yafra rcp client
 # yafra jars
