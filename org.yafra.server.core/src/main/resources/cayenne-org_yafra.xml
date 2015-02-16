@@ -9,7 +9,7 @@
 		<map-ref name="org.yafra.yafraMap"/>
 		<data-source>
 			<driver value="com.mysql.jdbc.Driver"/>
-			<url value="jdbc:mysql://localhost/yafra"/>
+			<url value="jdbc:mysql://192.168.9.10/yafra"/>
 			<connectionPool min="1" max="5"/>
 			<login userName="yafraadmin" password="yafra"/>
 		</data-source>
