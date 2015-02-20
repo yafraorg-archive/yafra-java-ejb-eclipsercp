@@ -25,63 +25,63 @@ public abstract class _Person extends CayenneDataObject {
     public static final String PK_PERSON_PK_COLUMN = "pkPerson";
 
     public void setAddress(String address) {
-        writeProperty("address", address);
+        writeProperty(ADDRESS_PROPERTY, address);
     }
     public String getAddress() {
-        return (String)readProperty("address");
+        return (String)readProperty(ADDRESS_PROPERTY);
     }
 
     public void setCountry(String country) {
-        writeProperty("country", country);
+        writeProperty(COUNTRY_PROPERTY, country);
     }
     public String getCountry() {
-        return (String)readProperty("country");
+        return (String)readProperty(COUNTRY_PROPERTY);
     }
 
     public void setFirstname(String firstname) {
-        writeProperty("firstname", firstname);
+        writeProperty(FIRSTNAME_PROPERTY, firstname);
     }
     public String getFirstname() {
-        return (String)readProperty("firstname");
+        return (String)readProperty(FIRSTNAME_PROPERTY);
     }
 
     public void setGoogleId(String googleId) {
-        writeProperty("googleId", googleId);
+        writeProperty(GOOGLE_ID_PROPERTY, googleId);
     }
     public String getGoogleId() {
-        return (String)readProperty("googleId");
+        return (String)readProperty(GOOGLE_ID_PROPERTY);
     }
 
     public void setId(Integer id) {
-        writeProperty("id", id);
+        writeProperty(ID_PROPERTY, id);
     }
     public Integer getId() {
-        return (Integer)readProperty("id");
+        return (Integer)readProperty(ID_PROPERTY);
     }
 
     public void setName(String name) {
-        writeProperty("name", name);
+        writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
-        return (String)readProperty("name");
+        return (String)readProperty(NAME_PROPERTY);
     }
 
     public void setType(String type) {
-        writeProperty("type", type);
+        writeProperty(TYPE_PROPERTY, type);
     }
     public String getType() {
-        return (String)readProperty("type");
+        return (String)readProperty(TYPE_PROPERTY);
     }
 
     public void addToLogArray(PersonLog obj) {
-        addToManyTarget("logArray", obj, true);
+        addToManyTarget(LOG_ARRAY_PROPERTY, obj, true);
     }
     public void removeFromLogArray(PersonLog obj) {
-        removeToManyTarget("logArray", obj, true);
+        removeToManyTarget(LOG_ARRAY_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<PersonLog> getLogArray() {
-        return (List<PersonLog>)readProperty("logArray");
+        return (List<PersonLog>)readProperty(LOG_ARRAY_PROPERTY);
     }
 
 

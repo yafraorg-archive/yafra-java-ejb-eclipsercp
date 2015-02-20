@@ -23,46 +23,46 @@ public abstract class _PersonLog extends CayenneDataObject {
     public static final String PK_PERSON_LOG_PK_COLUMN = "pkPersonLog";
 
     public void setEventAudit(String eventAudit) {
-        writeProperty("eventAudit", eventAudit);
+        writeProperty(EVENT_AUDIT_PROPERTY, eventAudit);
     }
     public String getEventAudit() {
-        return (String)readProperty("eventAudit");
+        return (String)readProperty(EVENT_AUDIT_PROPERTY);
     }
 
     public void setEventAuditReviewer(String eventAuditReviewer) {
-        writeProperty("eventAuditReviewer", eventAuditReviewer);
+        writeProperty(EVENT_AUDIT_REVIEWER_PROPERTY, eventAuditReviewer);
     }
     public String getEventAuditReviewer() {
-        return (String)readProperty("eventAuditReviewer");
+        return (String)readProperty(EVENT_AUDIT_REVIEWER_PROPERTY);
     }
 
     public void setEventCreator(String eventCreator) {
-        writeProperty("eventCreator", eventCreator);
+        writeProperty(EVENT_CREATOR_PROPERTY, eventCreator);
     }
     public String getEventCreator() {
-        return (String)readProperty("eventCreator");
+        return (String)readProperty(EVENT_CREATOR_PROPERTY);
     }
 
     public void setEventDate(Date eventDate) {
-        writeProperty("eventDate", eventDate);
+        writeProperty(EVENT_DATE_PROPERTY, eventDate);
     }
     public Date getEventDate() {
-        return (Date)readProperty("eventDate");
+        return (Date)readProperty(EVENT_DATE_PROPERTY);
     }
 
     public void setEventDescription(String eventDescription) {
-        writeProperty("eventDescription", eventDescription);
+        writeProperty(EVENT_DESCRIPTION_PROPERTY, eventDescription);
     }
     public String getEventDescription() {
-        return (String)readProperty("eventDescription");
+        return (String)readProperty(EVENT_DESCRIPTION_PROPERTY);
     }
 
     public void setToPerson(Person toPerson) {
-        setToOneTarget("toPerson", toPerson, true);
+        setToOneTarget(TO_PERSON_PROPERTY, toPerson, true);
     }
 
     public Person getToPerson() {
-        return (Person)readProperty("toPerson");
+        return (Person)readProperty(TO_PERSON_PROPERTY);
     }
 
 

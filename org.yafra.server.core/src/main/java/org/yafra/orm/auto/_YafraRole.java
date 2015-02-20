@@ -19,32 +19,32 @@ public abstract class _YafraRole extends CayenneDataObject {
     public static final String PK_YAFRA_ROLE_PK_COLUMN = "pkYafraRole";
 
     public void setDescription(String description) {
-        writeProperty("description", description);
+        writeProperty(DESCRIPTION_PROPERTY, description);
     }
     public String getDescription() {
-        return (String)readProperty("description");
+        return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
     public void setName(String name) {
-        writeProperty("name", name);
+        writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
-        return (String)readProperty("name");
+        return (String)readProperty(NAME_PROPERTY);
     }
 
     public void setRights(String rights) {
-        writeProperty("rights", rights);
+        writeProperty(RIGHTS_PROPERTY, rights);
     }
     public String getRights() {
-        return (String)readProperty("rights");
+        return (String)readProperty(RIGHTS_PROPERTY);
     }
 
     public void setToYafraBusinessRole(YafraBusinessRole toYafraBusinessRole) {
-        setToOneTarget("toYafraBusinessRole", toYafraBusinessRole, true);
+        setToOneTarget(TO_YAFRA_BUSINESS_ROLE_PROPERTY, toYafraBusinessRole, true);
     }
 
     public YafraBusinessRole getToYafraBusinessRole() {
-        return (YafraBusinessRole)readProperty("toYafraBusinessRole");
+        return (YafraBusinessRole)readProperty(TO_YAFRA_BUSINESS_ROLE_PROPERTY);
     }
 
 

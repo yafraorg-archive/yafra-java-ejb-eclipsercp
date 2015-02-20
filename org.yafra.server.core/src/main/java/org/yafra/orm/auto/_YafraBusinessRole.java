@@ -23,47 +23,47 @@ public abstract class _YafraBusinessRole extends CayenneDataObject {
     public static final String PK_YAFRA_BUSINESS_ROLE_PK_COLUMN = "pkYafraBusinessRole";
 
     public void setDescription(String description) {
-        writeProperty("description", description);
+        writeProperty(DESCRIPTION_PROPERTY, description);
     }
     public String getDescription() {
-        return (String)readProperty("description");
+        return (String)readProperty(DESCRIPTION_PROPERTY);
     }
 
     public void setFlag(Boolean flag) {
-        writeProperty("flag", flag);
+        writeProperty(FLAG_PROPERTY, flag);
     }
     public Boolean getFlag() {
-        return (Boolean)readProperty("flag");
+        return (Boolean)readProperty(FLAG_PROPERTY);
     }
 
     public void setName(String name) {
-        writeProperty("name", name);
+        writeProperty(NAME_PROPERTY, name);
     }
     public String getName() {
-        return (String)readProperty("name");
+        return (String)readProperty(NAME_PROPERTY);
     }
 
     public void addToYUsers(YafraUser obj) {
-        addToManyTarget("YUsers", obj, true);
+        addToManyTarget(YUSERS_PROPERTY, obj, true);
     }
     public void removeFromYUsers(YafraUser obj) {
-        removeToManyTarget("YUsers", obj, true);
+        removeToManyTarget(YUSERS_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<YafraUser> getYUsers() {
-        return (List<YafraUser>)readProperty("YUsers");
+        return (List<YafraUser>)readProperty(YUSERS_PROPERTY);
     }
 
 
     public void addToTechnicalRolesArray(YafraRole obj) {
-        addToManyTarget("technicalRolesArray", obj, true);
+        addToManyTarget(TECHNICAL_ROLES_ARRAY_PROPERTY, obj, true);
     }
     public void removeFromTechnicalRolesArray(YafraRole obj) {
-        removeToManyTarget("technicalRolesArray", obj, true);
+        removeToManyTarget(TECHNICAL_ROLES_ARRAY_PROPERTY, obj, true);
     }
     @SuppressWarnings("unchecked")
     public List<YafraRole> getTechnicalRolesArray() {
-        return (List<YafraRole>)readProperty("technicalRolesArray");
+        return (List<YafraRole>)readProperty(TECHNICAL_ROLES_ARRAY_PROPERTY);
     }
 
 

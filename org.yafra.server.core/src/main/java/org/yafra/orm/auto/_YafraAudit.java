@@ -21,32 +21,32 @@ public abstract class _YafraAudit extends CayenneDataObject {
     public static final String PK_AUDIT_PK_COLUMN = "pkAudit";
 
     public void setAuditobject(String auditobject) {
-        writeProperty("auditobject", auditobject);
+        writeProperty(AUDITOBJECT_PROPERTY, auditobject);
     }
     public String getAuditobject() {
-        return (String)readProperty("auditobject");
+        return (String)readProperty(AUDITOBJECT_PROPERTY);
     }
 
     public void setAudittext(String audittext) {
-        writeProperty("audittext", audittext);
+        writeProperty(AUDITTEXT_PROPERTY, audittext);
     }
     public String getAudittext() {
-        return (String)readProperty("audittext");
+        return (String)readProperty(AUDITTEXT_PROPERTY);
     }
 
     public void setTimestamp(Date timestamp) {
-        writeProperty("timestamp", timestamp);
+        writeProperty(TIMESTAMP_PROPERTY, timestamp);
     }
     public Date getTimestamp() {
-        return (Date)readProperty("timestamp");
+        return (Date)readProperty(TIMESTAMP_PROPERTY);
     }
 
     public void setToUser(YafraUser toUser) {
-        setToOneTarget("toUser", toUser, true);
+        setToOneTarget(TO_USER_PROPERTY, toUser, true);
     }
 
     public YafraUser getToUser() {
-        return (YafraUser)readProperty("toUser");
+        return (YafraUser)readProperty(TO_USER_PROPERTY);
     }
 
 
