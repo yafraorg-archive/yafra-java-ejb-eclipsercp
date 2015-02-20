@@ -4,7 +4,7 @@
 #
 # variables must be set by CI service
 # setup local environment first https://github.com/yafraorg/yafra/wiki/Development-Environment
-export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-tdb-csharp
+export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-java
 export WORKNODE=/work/yafra-runtime
 export SYSADM=/work/repos/yafra/org.yafra.sysadm
 export YAFRATOOLS=$SYSADM/defaults
