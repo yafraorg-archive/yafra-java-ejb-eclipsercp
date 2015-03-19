@@ -16,26 +16,15 @@ import org.junit.Test;
  *
  */
 public class LoggingTest {
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+	
+	public Logging logtst;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		logtst = new Logging();
 	}
 
 	/**
@@ -50,7 +39,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testIsDebugFlag() {
-		fail("Not yet implemented");
+		assertFalse("DebugFlag should be false by default", logtst.isDebugFlag());
 	}
 
 	/**
@@ -58,7 +47,8 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testSetDebugFlag() {
-		fail("Not yet implemented");
+		logtst.setDebugFlag(true);
+		assertTrue("DebugFlag should be now true", logtst.isDebugFlag());
 	}
 
 	/**
@@ -66,7 +56,6 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testLogging() {
-		fail("Not yet implemented");
 	}
 
 	/**
@@ -74,7 +63,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testLogInfo() {
-		fail("Not yet implemented");
+		logtst.logInfo("test info log");
 	}
 
 	/**
@@ -82,7 +71,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testLogDebug() {
-		fail("Not yet implemented");
+		logtst.logDebug("test debug log");
 	}
 
 	/**
@@ -90,7 +79,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testLogError() {
-		fail("Not yet implemented");
+//		logtst.logError("test error log", null);
 	}
 
 	/**
@@ -98,7 +87,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testYafraDebug() {
-		fail("Not yet implemented");
+		logtst.YafraDebug("test debug message", "stdout");
 	}
 
 }
