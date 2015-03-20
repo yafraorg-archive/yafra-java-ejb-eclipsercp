@@ -65,12 +65,13 @@ public class TestCoreServer
 		{
 		// create logging and cayenne context
 		ObjectContext dbcontext;
+		ServerRuntime cayenneRuntime = null;
 		Logging log;
 		
 		// start 1 session (could be n in parallel)
 		try
 			{
-			ServerRuntime cayenneRuntime = new ServerRuntime("cayenne-org_yafra.xml");
+			cayenneRuntime = new ServerRuntime("cayenne-org_yafra.xml");
 			dbcontext = cayenneRuntime.getContext();
 			log = new Logging();
 			log.setDebugFlag(true);
@@ -100,6 +101,7 @@ public class TestCoreServer
 		Delete2(sess.getContext());
 		Delete2(sess.getContext()); // causes an exception
 		TestHandlers(sess.getContext());
+		cayenneRuntime.shutdown();
 		}
 
 	private static void InsertPerson(ObjectContext context)

@@ -1,6 +1,25 @@
 #!/bin/sh
+#-------------------------------------------------------------------------------
+#  Copyright 2015 yafra.org
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#-------------------------------------------------------------------------------
 #
 # used for CI services like Jenkins, Shippable, Travis-CI
+
+echo "JAVA / Maven build starting"
+
+#-------------------------------------------------------------------------------
 #
 # variables must be set by CI service
 # setup local environment first https://github.com/yafraorg/yafra/wiki/Development-Environment
@@ -12,16 +31,22 @@ export YAFRABIN=$SYSADM/defaults/scripts
 export YAFRADOC=$WORKNODE/doc
 export YAFRAMAN=$WORKNODE/man
 export YAFRAEXE=$WORKNODE/bin
-    
 export PATH=$PATH:$YAFRABIN:$YAFRAEXE
-
-echo "JAVA / Maven build starting"
 echo "environment is WORKNODE = $WORKNODE - BASENODE = $BASENODE"
 test -d $WORKNODE/apps || mkdir -p $WORKNODE/apps
 test -d $WORKNODE/bin || mkdir -p $WORKNODE/bin
 
+
+#-------------------------------------------------------------------------------
+#
+# BUILD WITH DERBY AND RUN TESTS AND PACKAGE
+#
+
+# copy derby cayenne config as default
+cp org.yafra.server.core/src/main/resources/cayenne-org_yafra-embedded.xml org.yafra.server.core/src/main/resources/cayenne-org_yafra.xml
+
 # maven build - build all and run some extras afterwards
-mvn install
+mvn clean install
 if [ $? -eq 0 ]
 then
   echo "Successfully build with maven"
@@ -29,6 +54,10 @@ else
  echo "Error during maven build" >&2
  exit 1
 fi
+
+# copy test and coverage results
+cp org.yafra.utils/target/surefire-reports/*.xml shippable/testresults/.
+cp org.yafra.utils/target/site/jacoco/jacoco.* shippable/codecoverage/.
 
 # yafra java core
 echo "JAVA / Maven copy runtimes to runtime directory"
@@ -43,17 +72,13 @@ cd $BASENODE/org.yafra.server.ejb/target
 cp *client.jar $WORKNODE/apps
 cd $BASENODE/org.yafra.server.ejb-war/target
 cp *.war $WORKNODE/apps
-
 #rcp
 cd $BASENODE/org.yafra.rcpbuild
 ./build-rcp.sh
-if [ $? -eq 0 ]
-then
-  echo "Successfully RCP client"
-else
- echo "Error during RCP client build" >&2
- exit 1
-fi
+
+# make a build tar
+cp org.yafra.server.core/src/main/resources/cayenne-org_yafra-dockermysql.xml $WORKNODE
+tar cvf /work/yafra-java-build.tar $WORKNODE
 
 #
 # start yafra test first as this creates the tables if they are still missing
@@ -70,15 +95,11 @@ java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar
 #mvn tomee:start
 #cd -
 
-#
-# test yafra components
-#
-#run java tests
 echo "============================================================"
 echo " TEST CASE 3: java utils, ejb, ws"
 echo "============================================================"
 java -jar $YAFRAEXE/tests-utils-1.0-jar-with-dependencies.jar
-java -jar $YAFRAEXE/tests-ejb3-1.0-jar-with-dependencies.jar localhost
+#java -jar $YAFRAEXE/tests-ejb3-1.0-jar-with-dependencies.jar localhost
 
 
 echo "done - save in /work"

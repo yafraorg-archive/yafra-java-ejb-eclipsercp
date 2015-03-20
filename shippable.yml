@@ -1,3 +1,23 @@
+#-------------------------------------------------------------------------------
+#  Copyright 2012 yafra.org
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#-------------------------------------------------------------------------------
+#
+# shippable config file for java build
+# will run a java build with embedded derby db and run tests with it and package it
+# will run a java build with mysql db and package it
+#
 language: java
 
 jdk:
@@ -34,15 +54,12 @@ script:
 
 after_success:
    - echo $BUILD_NUMBER
-   - sudo tar cvf /work/yafra-java-build.tar /work/yafra-runtime
    - sudo -E cp /work/yafra-java-build.tar /work/yafra-java-build-$BUILD_NUMBER.tar
-   - sudo gzip /work/yafra-java-build*.tar
+   - sudo gzip /work/yafra-java-*.tar
    - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
    - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
-#   - mvn clean cobertura:cobertura
-#   - mvn test
 
 commit_container: yafraorg/java-shippable
 
 notifications:
-  email: false
+  email: true
