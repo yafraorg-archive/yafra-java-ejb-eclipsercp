@@ -59,7 +59,7 @@ after_success:
    - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
    - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
 
-commit_container: yafraorg/java-shippable
+#commit_container: yafraorg/java-shippable
 
 notifications:
   email: true

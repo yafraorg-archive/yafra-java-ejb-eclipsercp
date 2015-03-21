@@ -37,7 +37,7 @@ tar xvfz yafra-java-build.tar.gz
 # cayenne config
 # sed the localhost to $DB_PORT_3306_TCP_ADDR and $DB_PORT_3306_TCP_PORT
 # jar uf serverdirectclient-1.0-jar-with-dependencies.jar cayenne-org_yafra.xml
-cp $WORKNODE/cayenne-org_yafra-dockermysql.xml $WORKNODE/$CAYCONF
+cp $WORKNODE/cayenne-org_yafra-localmysql.xml $WORKNODE/$CAYCONF
 sed -i '/url/s/localhost/$DB_PORT_3306_TCP_ADDR/' $WORKNODE/$CAYCONF
 cp $WORKNODE/$CAYCONF $YAFRAEXE
 cp $WORKNODE/$CAYCONF $WORKNODE/apps

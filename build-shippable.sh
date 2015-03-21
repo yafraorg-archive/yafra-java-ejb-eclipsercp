@@ -58,31 +58,41 @@ else
  exit 1
 fi
 
+echo "start copy build files into worknode"
+pwd
+
 # copy test and coverage results
+echo "copy test and coverage results"
 cp org.yafra.utils/target/surefire-reports/*.xml shippable/testresults/.
 cp org.yafra.utils/target/site/jacoco/jacoco.* shippable/codecoverage/.
 
 # yafra java core
-echo "JAVA / Maven copy runtimes to runtime directory"
+echo "copy server core"
 cd org.yafra.server.core/target
 cp *.jar $WORKNODE/apps
 # yafra java J2EE wicket and cxf
+echo "copy server jee"
 cd ../../org.yafra.server.jee/target
 cp *.war $WORKNODE/apps
 cp *.jar $WORKNODE/bin
 # yafra java EJB3
+echo "copy server ejb"
 cd $JAVANODE/org.yafra.server.ejb/target
 cp *.jar $WORKNODE/apps
 cd $JAVANODE/org.yafra.server.ejb-war/target
 cp *.war $WORKNODE/apps
 #rcp
+echo "copy rcp"
 cd $JAVANODE/org.yafra.rcpbuild
 ./build-rcp.sh
 cd $JAVANODE
 
 # make a build tar
-cp $JAVANODE/org.yafra.server.core/src/main/resources/cayenne-org_yafra-dockermysql.xml $WORKNODE
+echo "copy docker cayenne config"
+cp $JAVANODE/org.yafra.server.core/src/main/resources/cayenne-org_yafra-localmysql.xml $WORKNODE
 tar cvf /work/yafra-java-build.tar $WORKNODE
+
+echo "copy done - start tests now"
 
 #
 # start yafra test first as this creates the tables if they are still missing
