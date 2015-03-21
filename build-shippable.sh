@@ -17,7 +17,7 @@
 #
 # used for CI services like Jenkins, Shippable, Travis-CI
 
-echo "JAVA / Maven build starting"
+echo "JAVA / Maven shippable build starting"
 
 #-------------------------------------------------------------------------------
 #
@@ -69,7 +69,7 @@ cp *.war $WORKNODE/apps
 cp *.jar $WORKNODE/bin
 # yafra java EJB3
 cd $BASENODE/org.yafra.server.ejb/target
-cp *client.jar $WORKNODE/apps
+cp *.jar $WORKNODE/apps
 cd $BASENODE/org.yafra.server.ejb-war/target
 cp *.war $WORKNODE/apps
 #rcp

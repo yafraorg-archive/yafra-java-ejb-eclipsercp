@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Model
-Bundle-SymbolicName: org.yafra.rcp.model
+Bundle-Name: org.yafra.rcp.model
+Bundle-SymbolicName: org.yafra.rcp.model;singleton:=true
 Bundle-Version: 1.0.0
+Bundle-ClassPath: .

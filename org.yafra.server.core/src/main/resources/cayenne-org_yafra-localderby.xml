@@ -14,7 +14,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<domain project-version="6">
+<domain project-version="7">
 	<map name="org.yafra.yafraMap"/>
 
 	<node name="org.yafra.dbNode"

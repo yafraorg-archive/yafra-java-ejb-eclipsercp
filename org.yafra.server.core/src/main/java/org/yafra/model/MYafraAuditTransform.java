@@ -18,7 +18,7 @@
  */
 package org.yafra.model;
 
-import org.apache.cayenne.DataObjectUtils;
+import org.apache.cayenne.Cayenne;
 import org.yafra.orm.YafraAudit;
 
 
@@ -42,7 +42,7 @@ public class MYafraAuditTransform
 	public MYafraAudit from(YafraAudit from)
 		{
 		MYafraAudit to = new MYafraAudit();
-		to.setDbPK(DataObjectUtils.intPKForObject(from));
+		to.setDbPK(Cayenne.intPKForObject(from));
 		to.setAuditobject(from.getAuditobject());
 		to.setAudittext(from.getAudittext());
 		to.setTimestamp(from.getTimestamp());

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src" including="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/javax.annotation/1.2.0.v201401042248/javax.annotation-1.2.0.v201401042248.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/javax.xml/1.3.4.v201005080400/javax.xml-1.3.4.v201005080400.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.osgi/3.10.2.v20150203-1939/org.eclipse.osgi-3.10.2.v20150203-1939.jar"/>
@@ -34,6 +32,8 @@
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.emf.common/2.10.1.v20150123-0348/org.eclipse.emf.common-2.10.1.v20150123-0348.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.swt/3.103.2.v20150203-1313/org.eclipse.swt-3.103.2.v20150203-1313.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.jface/3.10.2.v20141021-1035/org.eclipse.jface-3.10.2.v20141021-1035.jar"/>
+  <classpathentry kind="src" path="/org.yafra.rcp.adminmain"/>
+  <classpathentry kind="src" path="/org.yafra.rcp.model"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.swt.gtk.linux.x86/3.103.2.v20150203-1351/org.eclipse.swt.gtk.linux.x86-3.103.2.v20150203-1351.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.swt.gtk.linux.x86_64/3.103.2.v20150203-1351/org.eclipse.swt.gtk.linux.x86_64-3.103.2.v20150203-1351.jar"/>
   <classpathentry kind="lib" path="/Users/mwn/.m2/repository/p2/osgi/bundle/org.eclipse.swt.win32.win32.x86/3.103.2.v20150203-1351/org.eclipse.swt.win32.win32.x86-3.103.2.v20150203-1351.jar"/>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
    Copyright 2015 yafra.org
 
@@ -22,8 +23,9 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<cxf.version>2.7.10</cxf.version>
-		<wicket.version>6.15.0</wicket.version>
+		<cxf.version>2.7.15</cxf.version>
+		<wicket.version>7.0.0-M5</wicket.version>
+		<spring.version>4.1.5.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -77,12 +79,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.0.1.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.0.1.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
@@ -112,7 +114,7 @@
 		<dependency>
 			<groupId>org.apache.cayenne</groupId>
 			<artifactId>cayenne-server</artifactId>
-			<version>3.1</version>
+			<version>4.0.M2</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>

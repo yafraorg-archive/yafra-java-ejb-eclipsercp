@@ -13,8 +13,10 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+   
+   Embedded Derby Configuration
 -->
-<domain project-version="6">
+<domain project-version="7">
 	<map name="org.yafra.yafraMap"/>
 
 	<node name="org.yafra.dbNode"
@@ -24,7 +26,7 @@
 		<map-ref name="org.yafra.yafraMap"/>
 		<data-source>
 			<driver value="org.apache.derby.jdbc.EmbeddedDriver"/>
-			<url value="jdbc:derby:yafraDb;user=yafra;create=true"/>
+			<url value="jdbc:derby:/work/yafraDb;user=yafra;create=true"/>
 			<connectionPool min="1" max="1"/>
 			<login userName="yafraadmin"/>
 		</data-source>

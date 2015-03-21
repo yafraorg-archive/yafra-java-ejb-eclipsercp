@@ -21,6 +21,7 @@
 # setup local environment first https://github.com/yafraorg/yafra/wiki/Development-Environment
 export WORKNODE=/work/yafra-runtime
 export YAFRAEXE=$WORKNODE/bin
+export CAYCONF=cayenne-org_yafra.xml
 
 cd /work/repos/yafra-java
 git pull
@@ -36,11 +37,26 @@ tar xvfz yafra-java-build.tar.gz
 # cayenne config
 # sed the localhost to $DB_PORT_3306_TCP_ADDR and $DB_PORT_3306_TCP_PORT
 # jar uf serverdirectclient-1.0-jar-with-dependencies.jar cayenne-org_yafra.xml
+cp $WORKNODE/cayenne-org_yafra-dockermysql.xml $WORKNODE/$CAYCONF
+sed -i '/url/s/localhost/$DB_PORT_3306_TCP_ADDR/' $WORKNODE/$CAYCONF
+cp $WORKNODE/$CAYCONF $YAFRAEXE
+cp $WORKNODE/$CAYCONF $WORKNODE/apps
 
-# copy to tomcat
+cd $YAFRAEXE
+jar uf serverdirectclient-1.0-jar-with-dependencies.jar $CAYCONF
+cd $WORKNODE/apps
+jar uf org.yafra.server.jee.war $CAYCONF
+jar uf org.yafra.server.ejb.jar $CAYCONF
+
+# sed tomcat port to 80 and users - done in dockerfile not here - port kept to 8080
+# copy to tomcat (as war) / openejb (jar) 
+cp $WORKNODE/apps/org.yafra.server.jee.war /usr/local/tomcat/webapps
+cp $WORKNODE/apps/org.yafra.server.ejb.jar /usr/local/ejbserver/apps
 
 # run
 java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar
-java -jar $YAFRAEXE/jee-1.0-war-exec.jar -httpPort 8081 &
+/usr/local/tomcat/bin/startup.sh
+/usr/local/ejbserver/bin/openejb start
+
 
 echo "done - running now under tomcat"
