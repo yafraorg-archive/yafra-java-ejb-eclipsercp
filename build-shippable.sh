@@ -23,7 +23,8 @@ echo "JAVA / Maven shippable build starting"
 #
 # variables must be set by CI service
 # setup local environment first https://github.com/yafraorg/yafra/wiki/Development-Environment
-export BASENODE=/home/shippable/workspace/src/github.com/yafraorg/yafra-java
+export BASENODE=/home/shippable/workspace/src/github.com/yafraorg
+export JAVANODE=$BASENODE/yafra-java
 export WORKNODE=/work/yafra-runtime
 export SYSADM=/work/repos/yafra/org.yafra.sysadm
 export YAFRATOOLS=$SYSADM/defaults
@@ -41,6 +42,8 @@ test -d $WORKNODE/bin || mkdir -p $WORKNODE/bin
 #
 # BUILD WITH DERBY AND RUN TESTS AND PACKAGE
 #
+
+pwd
 
 # copy derby cayenne config as default
 cp org.yafra.server.core/src/main/resources/cayenne-org_yafra-embedded.xml org.yafra.server.core/src/main/resources/cayenne-org_yafra.xml
@@ -68,16 +71,17 @@ cd ../../org.yafra.server.jee/target
 cp *.war $WORKNODE/apps
 cp *.jar $WORKNODE/bin
 # yafra java EJB3
-cd $BASENODE/org.yafra.server.ejb/target
+cd $JAVANODE/org.yafra.server.ejb/target
 cp *.jar $WORKNODE/apps
-cd $BASENODE/org.yafra.server.ejb-war/target
+cd $JAVANODE/org.yafra.server.ejb-war/target
 cp *.war $WORKNODE/apps
 #rcp
-cd $BASENODE/org.yafra.rcpbuild
+cd $JAVANODE/org.yafra.rcpbuild
 ./build-rcp.sh
+cd $JAVANODE
 
 # make a build tar
-cp org.yafra.server.core/src/main/resources/cayenne-org_yafra-dockermysql.xml $WORKNODE
+cp $JAVANODE/org.yafra.server.core/src/main/resources/cayenne-org_yafra-dockermysql.xml $WORKNODE
 tar cvf /work/yafra-java-build.tar $WORKNODE
 
 #
