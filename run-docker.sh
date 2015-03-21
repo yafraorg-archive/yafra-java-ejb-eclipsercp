@@ -40,12 +40,15 @@ tar xvfz yafra-java-build.tar.gz
 cp $WORKNODE/cayenne-org_yafra-localmysql.xml $WORKNODE/$CAYCONF
 sed -i "/url/s/localhost/$DB_PORT_3306_TCP_ADDR/" $WORKNODE/$CAYCONF
 cp $WORKNODE/$CAYCONF $YAFRAEXE
-cp $WORKNODE/$CAYCONF $WORKNODE/apps
+mkdir -p $WORKNODE/apps/WEB-INF/classes
+cp $WORKNODE/$CAYCONF $WORKNODE/apps/WEB-INF/classes
+cp /work/repos/yafra-java/org.yafra.server.core/src/main/resources/org.yafra.yafraMap.map.xml $WORKNODE/apps/WEB-INF/classes
 
 cd $YAFRAEXE
 jar uf serverdirectclient-1.0-jar-with-dependencies.jar $CAYCONF
 cd $WORKNODE/apps
-jar uf org.yafra.server.jee.war $CAYCONF
+jar uf org.yafra.server.jee.war WEB-INF/classes/$CAYCONF
+jar uf org.yafra.server.jee.war WEB-INF/classes/org.yafra.yafraMap.map.xml
 jar uf org.yafra.server.ejb.jar $CAYCONF
 
 # sed tomcat port to 80 and users - done in dockerfile not here - port kept to 8080
