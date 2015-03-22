@@ -1,5 +1,8 @@
 package org.yafra.server.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -19,7 +22,7 @@ import org.yafra.server.jee.xmlobjects.WSPerson;
 import org.yafra.utils.Logging;
 
 @Path("/yafra/")
-@Produces("application/xml")
+@Produces("application/json")
 public class PersonHandler implements PersonRSI {
 
 	private ObjectContext dbcontext;
@@ -49,6 +52,42 @@ public class PersonHandler implements PersonRSI {
 			{
 			sess.getLogging().logError("generic catch all exception during startup", t);
 			}
+	}
+
+    @GET
+    @Path("/persons/")
+	public List<WSPerson> getPersons() {
+    	login();
+    	// start 1 session (could be n in parallel)
+		log.setDebugFlag(true);
+		log.logInfo("org.yafra.jee.rest - logging init done - getting session now");
+		List<WSPerson> tol = new ArrayList<WSPerson>();
+		MHPerson mhp = new MHPerson(dbcontext, log);
+		List<Person> froml = null;
+		WSPerson to = new WSPerson();
+		try
+			{
+			froml = mhp.getPersons();
+			}
+		catch (IndexOutOfBoundsException e)
+			{
+			sess.getLogging().logError("entry not found", e);
+			to.setName("NOT FOUND ERROR");
+			tol.add(to);
+			return tol;
+			}
+		for(int i =0; i < froml.size(); i++)
+		{
+			to.setAddress(froml.get(i).getAddress());
+			to.setName(froml.get(i).getName());
+			to.setFirstname(froml.get(i).getFirstname());
+			to.setId(froml.get(i).getId());
+			to.setType(froml.get(i).getType());
+			to.setCountry(froml.get(i).getCountry());
+			to.setGoogleId(froml.get(i).getGoogleId());
+		}
+
+		return tol;
 	}
 
     @GET

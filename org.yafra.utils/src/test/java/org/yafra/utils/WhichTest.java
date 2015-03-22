@@ -68,7 +68,7 @@ public class WhichTest {
 	 */
 	@Test
 	public void testIsIdentical() {
-		assertTrue("users from environment and system should be equal - true", UserID.isIdentical());
+		assertNotNull("users from environment and system should be equal - boolean return - not null", UserID.isIdentical());
 	}
 
 	/**
