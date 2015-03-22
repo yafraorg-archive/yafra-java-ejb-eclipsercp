@@ -23,7 +23,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<cxf.version>2.7.15</cxf.version>
+		<cxf.version>3.0.4</cxf.version>
 		<wicket.version>7.0.0-M5</wicket.version>
 		<spring.version>4.1.5.RELEASE</spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
