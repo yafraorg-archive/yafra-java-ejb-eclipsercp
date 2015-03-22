@@ -40,6 +40,7 @@ tar xvfz yafra-java-build.tar.gz
 cp $WORKNODE/cayenne-org_yafra-localmysql.xml $WORKNODE/$CAYCONF
 sed -i "/url/s/localhost/$DB_PORT_3306_TCP_ADDR/" $WORKNODE/$CAYCONF
 cp $WORKNODE/$CAYCONF $YAFRAEXE
+cp $WORKNODE/$CAYCONF $WORKNODE/apps
 mkdir -p $WORKNODE/apps/WEB-INF/classes
 cp $WORKNODE/$CAYCONF $WORKNODE/apps/WEB-INF/classes
 cp $WORKNODE/org.yafra.yafraMap.map.xml $WORKNODE/apps/WEB-INF/classes
@@ -59,6 +60,7 @@ cp $WORKNODE/apps/org.yafra.server.ejb.jar /usr/local/ejbserver/apps
 # run
 java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar
 /usr/local/tomcat/bin/startup.sh
+cd /usr/local/ejbserver
 /usr/local/ejbserver/bin/openejb start --ejbd-bind 0.0.0.0 &
 
 
