@@ -1,4 +1,18 @@
-/**
+/*****************************************************************
+ * Copyright 2015 yafra.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  * 
  */
 package org.yafra.utils;
@@ -6,9 +20,7 @@ package org.yafra.utils;
 import static org.junit.Assert.*;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -18,6 +30,7 @@ import org.junit.Test;
 public class LoggingTest {
 	
 	public Logging logtst;
+	private static final String dev = "stdout";
 
 	/**
 	 * @throws java.lang.Exception
@@ -47,8 +60,11 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testSetDebugFlag() {
+		logtst.setDebugFlag(false);
+		assertFalse("DebugFlag should be now false", logtst.isDebugFlag());
 		logtst.setDebugFlag(true);
 		assertTrue("DebugFlag should be now true", logtst.isDebugFlag());
+		logtst.YafraDebug("\norg.yafra.tests - start off with first debug message", dev);
 	}
 
 	/**
@@ -79,7 +95,7 @@ public class LoggingTest {
 	 */
 	@Test
 	public void testLogError() {
-//		logtst.logError("test error log", null);
+		logtst.logError("test error log", null);
 	}
 
 	/**

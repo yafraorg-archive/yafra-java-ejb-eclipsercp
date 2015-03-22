@@ -40,7 +40,7 @@ test -d $WORKNODE/bin || mkdir -p $WORKNODE/bin
 
 #-------------------------------------------------------------------------------
 #
-# BUILD WITH DERBY AND RUN TESTS AND PACKAGE
+# BUILD WITH DERBY AND RUN TESTS
 #
 
 pwd
@@ -58,6 +58,10 @@ else
  exit 1
 fi
 
+#-------------------------------------------------------------------------------
+#
+# PACKAGE
+#
 echo "start copy build files into worknode"
 pwd
 
@@ -87,15 +91,21 @@ cd $JAVANODE/org.yafra.rcpbuild
 ./build-rcp.sh
 cd $JAVANODE
 
+#-------------------------------------------------------------------------------
+#
 # make a build tar
+#
 echo "copy docker cayenne config"
 cp $JAVANODE/org.yafra.server.core/src/main/resources/cayenne-org_yafra-localmysql.xml $WORKNODE
+cp $JAVANODE/org.yafra.server.core/src/main/resources/org.yafra.yafraMap.map.xml $WORKNODE
 tar cvf /work/yafra-java-build.tar $WORKNODE
 
 echo "copy done - start tests now"
 
+#-------------------------------------------------------------------------------
 #
 # start yafra test first as this creates the tables if they are still missing
+#
 echo "============================================================"
 echo " TEST CASE 1: Yafra db access with data operation and test data fill"
 echo "============================================================"
@@ -109,10 +119,9 @@ java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar
 #mvn tomee:start
 #cd -
 
-echo "============================================================"
-echo " TEST CASE 3: java utils, ejb, ws"
-echo "============================================================"
-java -jar $YAFRAEXE/tests-utils-1.0-jar-with-dependencies.jar
+#echo "============================================================"
+#echo " TEST CASE 3: java ejb, rest, ws"
+#echo "============================================================"
 #java -jar $YAFRAEXE/tests-ejb3-1.0-jar-with-dependencies.jar localhost
 
 

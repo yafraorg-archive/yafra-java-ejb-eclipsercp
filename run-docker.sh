@@ -42,7 +42,7 @@ sed -i "/url/s/localhost/$DB_PORT_3306_TCP_ADDR/" $WORKNODE/$CAYCONF
 cp $WORKNODE/$CAYCONF $YAFRAEXE
 mkdir -p $WORKNODE/apps/WEB-INF/classes
 cp $WORKNODE/$CAYCONF $WORKNODE/apps/WEB-INF/classes
-cp /work/repos/yafra-java/org.yafra.server.core/src/main/resources/org.yafra.yafraMap.map.xml $WORKNODE/apps/WEB-INF/classes
+cp $WORKNODE/org.yafra.yafraMap.map.xml $WORKNODE/apps/WEB-INF/classes
 
 cd $YAFRAEXE
 jar uf serverdirectclient-1.0-jar-with-dependencies.jar $CAYCONF
@@ -59,7 +59,7 @@ cp $WORKNODE/apps/org.yafra.server.ejb.jar /usr/local/ejbserver/apps
 # run
 java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar
 /usr/local/tomcat/bin/startup.sh
-/usr/local/ejbserver/bin/openejb start
+/usr/local/ejbserver/bin/openejb start &
 
 
 echo "done - running now under tomcat"

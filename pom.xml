@@ -27,7 +27,6 @@
      <module>org.yafra.server.jee</module>
      <module>org.yafra.server.ejb</module>
      <module>org.yafra.server.ejb-war</module>
-     <module>org.yafra.tests.utils</module>
      <module>org.yafra.tests.serverdirectclient</module>
      <module>org.yafra.tests.serverejb3</module>
      <module>org.yafra.rcpbuild</module>
