@@ -1,6 +1,7 @@
 package org.yafra.server.rest;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.DELETE;
@@ -63,30 +64,21 @@ public class PersonHandler implements PersonRSI {
 		log.logInfo("org.yafra.jee.rest - logging init done - getting session now");
 		List<WSPerson> tol = new ArrayList<WSPerson>();
 		MHPerson mhp = new MHPerson(dbcontext, log);
-		List<Person> froml = null;
-		WSPerson to = new WSPerson();
-		try
+		List<Person> pl = mhp.getPersons();
+		Iterator<Person> it = pl.iterator();
+		while (it.hasNext())
 			{
-			froml = mhp.getPersons();
-			}
-		catch (IndexOutOfBoundsException e)
-			{
-			sess.getLogging().logError("entry not found", e);
-			to.setName("NOT FOUND ERROR");
+			Person i = (Person) it.next();
+			WSPerson to = new WSPerson();
+			to.setAddress(i.getAddress());
+			to.setName(i.getName());
+			to.setFirstname(i.getFirstname());
+			to.setId(i.getId());
+			to.setType(i.getType());
+			to.setCountry(i.getCountry());
+			to.setGoogleId(i.getGoogleId());
 			tol.add(to);
-			return tol;
 			}
-		for(int i =0; i < froml.size(); i++)
-		{
-			to.setAddress(froml.get(i).getAddress());
-			to.setName(froml.get(i).getName());
-			to.setFirstname(froml.get(i).getFirstname());
-			to.setId(froml.get(i).getId());
-			to.setType(froml.get(i).getType());
-			to.setCountry(froml.get(i).getCountry());
-			to.setGoogleId(froml.get(i).getGoogleId());
-		}
-
 		return tol;
 	}
 

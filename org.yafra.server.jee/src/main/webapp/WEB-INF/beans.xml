@@ -11,22 +11,25 @@ http://cxf.apache.org/schemas/jaxrs.xsd
 http://cxf.apache.org/jaxws
 http://cxf.apache.org/schemas/jaxws.xsd">
 
-  <import resource="classpath:META-INF/cxf/cxf.xml" />
-  <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
- 
-  <!-- JAX-RS -->
-  <jaxrs:server id="yafrapersonRestful" address="/yafrarest">
-    <jaxrs:serviceBeans>
-      <ref bean="personHandlerREST" />
-    </jaxrs:serviceBeans>
-  </jaxrs:server>
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+	
+	<!-- JAX-RS -->
+	<jaxrs:server id="yafrapersonRestful" address="/yafrarest">
+		<jaxrs:serviceBeans>
+			<ref bean="personHandlerREST" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider"/>
+		</jaxrs:providers>
+	</jaxrs:server>
 
-  <!-- JAX-WS -->
-<jaxws:endpoint 
-	  id="personHandler" 
-	  implementor="org.yafra.server.jee.ws.PersonHandler" 
-	  address="/PersonSEI" />
-
-<bean id="personHandlerREST" class="org.yafra.server.rest.PersonHandler" />	  
+	 <!-- JAX-WS -->
+	<jaxws:endpoint 
+		  id="personHandler" 
+		  implementor="org.yafra.server.jee.ws.PersonHandler" 
+		  address="/PersonSEI" />
+	
+	<bean id="personHandlerREST" class="org.yafra.server.rest.PersonHandler" />	  
 	 
 </beans>

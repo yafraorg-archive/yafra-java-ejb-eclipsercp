@@ -68,11 +68,12 @@ public class YafraUserPage extends AdminPage
 	public YafraUserPage()
 		{
 
-        final YafraUserDP userProvider = new YafraUserDP();
+        //final YafraUserDP userProvider = new YafraUserDP();
         
 		List<IColumn<MYafraUser, String>> columns = new ArrayList<IColumn<MYafraUser, String>>();
 		columns.add(new AbstractColumn<MYafraUser, String>(new Model<String>("Actions"))
 		{
+			@Override
 			public void populateItem(Item<ICellPopulator<MYafraUser>> cellItem, String componentId,
 				IModel<MYafraUser> model)
 			{
@@ -85,7 +86,7 @@ public class YafraUserPage extends AdminPage
 	    	{ 
 	    	}); 
         
-        DefaultDataTable table = new DefaultDataTable("datatable", columns, userProvider, 20);
+        DefaultDataTable table = new DefaultDataTable("datatable", columns, new YafraUserDP(), 20);
         
         add(table);
         add(new DownloadLink("excelExport", new AbstractReadOnlyModel<File>()

@@ -51,23 +51,23 @@ import org.yafra.utils.Logging;
 public class YafraUserDP extends SortableDataProvider<MYafraUser, String>
 	{
 	class SortableDataProviderComparator implements Comparator<MYafraUser>, Serializable
-	{
-	public int compare(final MYafraUser o1, final MYafraUser o2)
 		{
-		PropertyModel<Comparable> model1 = new PropertyModel<Comparable>(o1, (String) getSort().getProperty());
-		PropertyModel<Comparable> model2 = new PropertyModel<Comparable>(o2, (String) getSort().getProperty());
-
-		int result = model1.getObject().compareTo(model2.getObject());
-
-		if (!getSort().isAscending())
+		public int compare(final MYafraUser o1, final MYafraUser o2)
 			{
-			result = -result;
+			PropertyModel<Comparable> model1 = new PropertyModel<Comparable>(o1, (String) getSort().getProperty());
+			PropertyModel<Comparable> model2 = new PropertyModel<Comparable>(o2, (String) getSort().getProperty());
+	
+			int result = model1.getObject().compareTo(model2.getObject());
+	
+			if (!getSort().isAscending())
+				{
+				result = -result;
+				}
+	
+			return result;
 			}
-
-		return result;
+	
 		}
-
-	}
 	private SortableDataProviderComparator comparator = new SortableDataProviderComparator();
 
 	private IModel<List<MYafraUser>> list;
@@ -78,21 +78,6 @@ public class YafraUserDP extends SortableDataProvider<MYafraUser, String>
 		this.setSort("name", SortOrder.ASCENDING);
 		// load data
 		list = new YafraUserDM(); 
-		}
-
-	public Iterator<MYafraUser> iterator(final int first, final int count)
-		{
-		// In this example the whole list gets copied, sorted and sliced; in real applications typically your database would deliver a sorted and limited list
-
-		// Get the data
-		List<MYafraUser> newList = new ArrayList<MYafraUser>(list.getObject());
-
-		// Sort the data
-		// JAVA8 support: Collections.sort(newList, (MYafraUser a1, MYafraUser a2 ) -> ( a1.compareTo( a2 ) ));
-		Collections.sort(newList, comparator);
-
-		// Return the data for the current page - this can be determined only after sorting
-		return newList.subList(first, first + count).iterator();
 		}
 
 	public long size()
@@ -117,10 +102,19 @@ public class YafraUserDP extends SortableDataProvider<MYafraUser, String>
 		}
 
 	@Override
-	public Iterator iterator(long arg0, long arg1)
-		{
+	public Iterator<? extends MYafraUser> iterator(long first, long count) {
 		// TODO Auto-generated method stub
-		return null;
-		}
+		// In this example the whole list gets copied, sorted and sliced; in real applications typically your database would deliver a sorted and limited list
+
+		// Get the data
+		List<MYafraUser> newList = new ArrayList<MYafraUser>(list.getObject());
+
+		// Sort the data
+		// JAVA8 support: Collections.sort(newList, (MYafraUser a1, MYafraUser a2 ) -> ( a1.compareTo( a2 ) ));
+		Collections.sort(newList, comparator);
+
+		// Return the data for the current page - this can be determined only after sorting
+		return newList.subList((int)first, (int)first + (int)count).iterator();
+	}
 
 	}
