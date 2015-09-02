@@ -7,6 +7,7 @@ This repository holds a Java application including a server using Apache Cayenne
 
 ## Development Environment
  * Based on Eclipse: https://github.com/yafraorg/yafra/wiki/Development-environment-Java-JEE
+Maven OS/X issue with JAVA_HOME see http://stackoverflow.com/questions/24705877/cant-get-maven-to-recognize-java-1-8
 
 ## Automatic build and run environment
  * Shippable: https://app.shippable.com/projects/54d36cf15ab6cc13528aecf0
