@@ -60,7 +60,7 @@ cp $WORKNODE/apps/org.yafra.server.jee.war /usr/local/tomcat/webapps
 cp $WORKNODE/apps/org.yafra.server.ejb.jar /usr/local/ejbserver/apps
 
 # run
-java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar || true
+#java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar || true
 /usr/local/tomcat/bin/startup.sh
 cd /usr/local/ejbserver
 /usr/local/ejbserver/bin/openejb start --ejbd-bind 0.0.0.0 &
