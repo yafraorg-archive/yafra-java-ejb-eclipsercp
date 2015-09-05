@@ -63,7 +63,7 @@ cp $WORKNODE/apps/org.yafra.server.ejb.jar /usr/local/ejbserver/apps
 #java -jar $YAFRAEXE/serverdirectclient-1.0-jar-with-dependencies.jar || true
 exec /usr/local/tomcat/bin/catalina.sh run
 cd /usr/local/ejbserver
-/usr/local/ejbserver/bin/openejb start --ejbd-bind 0.0.0.0 &
+exec /usr/local/ejbserver/bin/openejb start --ejbd-bind 0.0.0.0 &
 
 
 echo "done - running now under tomcat"
