@@ -28,6 +28,7 @@ jdk:
 env:
   global:
     - YAFRABUILD=$BUILD_NUMBER
+    - secure: Y03RA/2zQJaHT8tRJpKiidLnb33bKRpaaZDlXCSBsi1Q1kUV3GFvO5Mb/w1AXrBcYJLq7RiFWsIrkTwIzjPyaPKS1YHnHYwNtWDdcCFFrqGu3L0BTgrK28pxGulgZqNDPvQu5TUt8TjeBzDp+fyhqQK/hg+Ayro7e5Ie0cWX/vD7rbJyD8KnEGEENwb2DS8nyLNtYgEUfb+PC4Xc6cGaTjlFdRFP/OBR/n4xR99rBCplxTwwQ6+5gXpI/LK8PktRgijIDoLfUZmJTMtjasOjnlambR7cFy8DbaYb9taX+c5yPI++JY6OsqT5QSkEFwJ4YsUxJC0aKcFLhxbAL+ejmw==
 
 before_install:
   - sudo apt-get update -qq
@@ -56,8 +57,8 @@ after_success:
    - echo $BUILD_NUMBER
    - sudo -E cp /work/yafra-java-build.tar /work/yafra-java-build-$BUILD_NUMBER.tar
    - sudo gzip /work/yafra-java-*.tar
+   - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://dl.bintray.com/content/yafraorg/yafra-distribution/yafra-java/v1.0
    - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
-   - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
 
 #commit_container: yafraorg/java-shippable
 
