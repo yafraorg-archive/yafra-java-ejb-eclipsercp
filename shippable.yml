@@ -57,7 +57,7 @@ after_success:
    - echo $BUILD_NUMBER
    - sudo -E cp /work/yafra-java-build.tar /work/yafra-java-build-$BUILD_NUMBER.tar
    - sudo gzip /work/yafra-java-*.tar
-   - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://dl.bintray.com/content/yafraorg/yafra-distribution/yafra-java/v1.0
+   - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://api.bintray.com/content/yafraorg/yafra-distribution/yafra-java/v1.0/
    - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
 
 #commit_container: yafraorg/java-shippable
