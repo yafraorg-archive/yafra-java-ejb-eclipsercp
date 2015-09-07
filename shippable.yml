@@ -29,6 +29,7 @@ env:
   global:
     - YAFRABUILD=$BUILD_NUMBER
     - secure: Y03RA/2zQJaHT8tRJpKiidLnb33bKRpaaZDlXCSBsi1Q1kUV3GFvO5Mb/w1AXrBcYJLq7RiFWsIrkTwIzjPyaPKS1YHnHYwNtWDdcCFFrqGu3L0BTgrK28pxGulgZqNDPvQu5TUt8TjeBzDp+fyhqQK/hg+Ayro7e5Ie0cWX/vD7rbJyD8KnEGEENwb2DS8nyLNtYgEUfb+PC4Xc6cGaTjlFdRFP/OBR/n4xR99rBCplxTwwQ6+5gXpI/LK8PktRgijIDoLfUZmJTMtjasOjnlambR7cFy8DbaYb9taX+c5yPI++JY6OsqT5QSkEFwJ4YsUxJC0aKcFLhxbAL+ejmw==
+    - secure: mXt0CvcYeQ2vLfzpRMHdWbpQS2k3QBTnLQfKyTZqZZNNDekXvBqkeUKAebQ3bIvowOmCRWeGUVIPr1vC6QqAU3Hii52TFHKGynbbtUb3DMvhyIewlyrU0ANaq6Of7MUnMbUTJ0UMWnXO4i2J4K9gfTIJ3207NyfHE9mbiLGjX63Z0scglGSbdDeO+lt+ltLE8lRf/zPE0XOEqU4fNamUMmCL7/8+ZD1ugqvaJ4N3kBQn8hkBpgfWtM4eT2klOFeh3u5vVpLB6tgPnhAyFUGtnIiaYkh7hz5X2FbTxvm9kjS+/GwJavWjxJiwTeCfBBh2oAVN3c5lpNb+uiWcnTeFqQ==
 
 before_install:
   - sudo apt-get update -qq
@@ -58,7 +59,7 @@ after_success:
    - sudo -E cp /work/yafra-java-build.tar /work/yafra-java-build-$BUILD_NUMBER.tar
    - sudo gzip /work/yafra-java-*.tar
    - sudo curl -T /work/yafra-java-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://api.bintray.com/content/yafraorg/yafra-distribution/yafra-java/v1.0/
-   - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:eoCvvg9J ftp://ftp.yafra.org/
+   - sudo curl -T /work/yafra-java-build.tar.gz -u yafrarel@yafra.org:$YAFRAFTPPWD ftp://ftp.yafra.org/
 
 #commit_container: yafraorg/java-shippable
 
