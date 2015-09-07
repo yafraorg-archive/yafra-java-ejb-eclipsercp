@@ -25,11 +25,12 @@ jdk:
   - oraclejdk8
 #  - openjdk7
 
+# secure variables BINTRAYAPI, YAFRAFTPPWD
 env:
   global:
     - YAFRABUILD=$BUILD_NUMBER
     - secure: Y03RA/2zQJaHT8tRJpKiidLnb33bKRpaaZDlXCSBsi1Q1kUV3GFvO5Mb/w1AXrBcYJLq7RiFWsIrkTwIzjPyaPKS1YHnHYwNtWDdcCFFrqGu3L0BTgrK28pxGulgZqNDPvQu5TUt8TjeBzDp+fyhqQK/hg+Ayro7e5Ie0cWX/vD7rbJyD8KnEGEENwb2DS8nyLNtYgEUfb+PC4Xc6cGaTjlFdRFP/OBR/n4xR99rBCplxTwwQ6+5gXpI/LK8PktRgijIDoLfUZmJTMtjasOjnlambR7cFy8DbaYb9taX+c5yPI++JY6OsqT5QSkEFwJ4YsUxJC0aKcFLhxbAL+ejmw==
-    - secure: mXt0CvcYeQ2vLfzpRMHdWbpQS2k3QBTnLQfKyTZqZZNNDekXvBqkeUKAebQ3bIvowOmCRWeGUVIPr1vC6QqAU3Hii52TFHKGynbbtUb3DMvhyIewlyrU0ANaq6Of7MUnMbUTJ0UMWnXO4i2J4K9gfTIJ3207NyfHE9mbiLGjX63Z0scglGSbdDeO+lt+ltLE8lRf/zPE0XOEqU4fNamUMmCL7/8+ZD1ugqvaJ4N3kBQn8hkBpgfWtM4eT2klOFeh3u5vVpLB6tgPnhAyFUGtnIiaYkh7hz5X2FbTxvm9kjS+/GwJavWjxJiwTeCfBBh2oAVN3c5lpNb+uiWcnTeFqQ==
+    - secure: MNa4cM4J/QyEZJQ868kbDDhl8DLB8FefaWNyLDt6x03Z8HfGlEqw9/54MOKN4IwNWJiuJhhsCns2Vdj0tDMUaIu35pzPjWnLmaYRSpU/N9hwurrf+ehY5k3GRosKXRbI2qTHB9mtK+1pGsggwGHG9clU/tlR8eh56HXsoNgqmquMui3Gyygc4el96mZG9JzjQIyTxUHKo8R41YI1/Rdp1ED0I20ZY1J4/VQakUzAnN0F5NF2AKDO2ynIZhwsEk1MI9X56LmOWBpoDjkqXYVY8iQfYVCdqnnFCB8w2JqI0HIvLKS/5Zg7qezV00ffvCMN1Il9MatKLe0hL+EymEYz7w==
 
 before_install:
   - sudo apt-get update -qq
